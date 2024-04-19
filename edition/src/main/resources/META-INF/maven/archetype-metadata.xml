@@ -1,0 +1,23 @@
+<archetype-descriptor
+  xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 https://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+  name="edition-tooling">
+  <requiredProperties>
+    <requiredProperty key="tooling-dir">
+      <defaultValue>${archetype.tooling.dir}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="git-instance">
+      <defaultValue>${archetype.git.instance}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="git-repo-path"/>
+    <requiredProperty key="distribution-url">
+      <defaultValue>${archetype.distribution.url}</defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+  <fileSets>
+    <fileSet filtered="false" packaged="true">
+      <directory>scripts</directory>
+    </fileSet>
+  </fileSets>
+</archetype-descriptor>

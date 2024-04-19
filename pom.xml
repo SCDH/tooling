@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.uni-ms.scdh.tei</groupId>
+    <artifactId>tooling</artifactId>
+    <version>${revision}${changelist}</version>
+
+    <name>Tooling</name>
+    <description>Tooling for TEI editions and TEI processing projects</description>
+    <url>https://zivgitlab.uni-muenster.de/SCDH/tei-processing/tooling</url>
+
+    <developers>
+        <developer>
+            <name>Christian Lück</name>
+            <organization>SCDH, University of Münster</organization>
+        </developer>
+    </developers>
+
+    <organization>
+        <name>Service Center of Digital Humanities, ULB, University of Münster</name>
+        <url>https://www.uni-muenster.de/SCDH/</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License, version 3</name>
+            <url>https://gplv3.fsf.org/</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:${project.url}.git</connection>
+        <developerConnection>scm:git:${project.url}.git</developerConnection>
+        <url>scm:git:${project.url}.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <!-- default values used in archetype generation dialogs -->
+        <archetype.tooling.dir>tooling</archetype.tooling.dir>
+        <archetype.git.instance>zivgitlab.uni-muenster.de</archetype.git.instance>
+        <!--
+            The env.CI_PROJECT_ID variable must be escaped when defined!
+            Thus, in the gitlab pipeline it has to be re-set with an escaped
+            value!
+        -->
+        <archetype.distribution.url>https://${git.instance}/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven</archetype.distribution.url>
+    </properties>
+
+    <modules>
+        <module>edition</module>
+    </modules>
+
+</project>

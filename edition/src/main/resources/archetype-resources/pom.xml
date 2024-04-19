@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- See documentation in resources/README.md -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>\${revision}\${changelist}</version>
+
+    <name>Digital Edition</name>
+    <url>https://${git-instance}/${git-repo-path}</url>
+
+    <properties>
+        <!-- project repository -->
+        <git.instance>${git-instance}</git.instance>
+        <distribution.url>${distribution-url}</distribution.url>
+        <git.repo.path>${git-repo-path}</git.repo.path>
+
+        <tooling.dir>${tooling-dir}</tooling.dir>
+
+        <!-- Tool Versions -->
+        <ph.schematron.version>5.6.4</ph.schematron.version>
+        <saxon.version>10.9</saxon.version>
+        <xmlresolver.version>4.5.1</xmlresolver.version>
+        <oxygen.version>24.1.0.0</oxygen.version>
+        <jing.version>20091111</jing.version>
+        <schxslt.version>1.9.5</schxslt.version>
+        <ant.version>1.10.14</ant.version>
+        <ant-contrib.version>1.0b3</ant-contrib.version>
+        <slf4j.version>2.0.6</slf4j.version>
+        <icu-xpath-bindings.version>0.2.3</icu-xpath-bindings.version>
+        <slf4j.version>2.0.6</slf4j.version>
+        <jena.version>4.10.0</jena.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <!-- required by Saxon >= 11, XSpec maven plugin 2.2.0 -->
+            <groupId>org.xmlresolver</groupId>
+            <artifactId>xmlresolver</artifactId>
+            <version>${xmlresolver.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>${saxon.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oxygenxml</groupId>
+            <artifactId>oxygen-patched-xerces</artifactId>
+            <version>${oxygen.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.thaiopensource</groupId>
+            <artifactId>jing</artifactId>
+            <version>${jing.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>name.dmaus.schxslt</groupId>
+            <artifactId>ant</artifactId>
+            <version>${schxslt.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/ant/ant -->
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>${ant.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>${ant-contrib.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-cmds</artifactId>
+            <version>${jena.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <!-- where to find dependencies that are not on maven central -->
+    <repositories>
+        <repository>
+            <id>oxygen-repository</id>
+            <url>https://www.oxygenxml.com/maven/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>${distribution.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>${distribution.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>oxygenxml</id>
+            <url>https://www.oxygenxml.com/maven/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+
+            <!-- Do not make a JAR-file! -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>none</phase>
+                        <configuration>
+                            <finalName>unwanted</finalName>
+                            <classifier>unwanted</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!-- where to place the tools -->
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!-- copy the tools' JARs to target/lib -->
+                        <id>copy-jars</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <stripVersion>true</stripVersion>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <!-- we need to prevent some outdated or replaced jars from being copied -->
+                            <excludeArtifactIds>xercesImpl,saxon</excludeArtifactIds>
+                            <!-- the schXslt jar is not to be copied -->
+                            <excludeGroupIds>name.dmaus.schxslt</excludeGroupIds>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- unpack schXslt to target/schxslt -->
+                        <id>unpack-schXslt</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeArtifacts>name.dmaus.schxslt:ant</includeArtifacts>
+                            <includes>**/*.xsl</includes>
+                            <outputDirectory>${project.build.directory}/schxslt</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!-- generate wrapper scripts -->
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>properties-to-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/bin</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${tooling.dir}/scripts</directory>
+                                    <includes>
+                                        <include>*.sh</include>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>set-permissions</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <target>
+                                <!-- set the permission of linux shell scripts -->
+                                <chmod dir="${project.build.directory}/bin" perm="755"
+                                    includes="*.sh"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
