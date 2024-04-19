@@ -10,7 +10,8 @@
   </parent>
 
   <artifactId>edition-tooling</artifactId>
-  <name>Tooling for TEI Editions</name>
+  <name>Edition Tooling</name>
+  <description>Tooling for TEI Editions in tooling folder</description>
 
   <packaging>maven-archetype</packaging>
 

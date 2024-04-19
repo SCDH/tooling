@@ -10,7 +10,8 @@
   </parent>
 
   <artifactId>processing-tooling</artifactId>
-  <name>Tooling for TEI Processing</name>
+  <name>Processing Tooling</name>
+  <description>Tooling for TEI Processing in base folder</description>
 
   <packaging>maven-archetype</packaging>
 
