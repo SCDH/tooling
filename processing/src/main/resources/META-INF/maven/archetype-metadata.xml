@@ -18,5 +18,8 @@
     <fileSet filtered="false" packaged="false">
       <directory>scripts</directory>
     </fileSet>
+    <fileSet filtered="false" packaged="false">
+      <directory>.mvn</directory>
+    </fileSet>
   </fileSets>
 </archetype-descriptor>

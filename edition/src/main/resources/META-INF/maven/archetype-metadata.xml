@@ -19,5 +19,8 @@
     <fileSet filtered="false" packaged="false">
       <directory>${archetype.tooling.dir}/scripts</directory>
     </fileSet>
+    <fileSet filtered="false" packaged="false">
+      <directory>.mvn</directory>
+    </fileSet>
   </fileSets>
 </archetype-descriptor>
