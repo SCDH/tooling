@@ -58,6 +58,7 @@
 
     <modules>
         <module>edition</module>
+        <module>processing</module>
     </modules>
 
     <repositories>
