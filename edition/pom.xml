@@ -64,7 +64,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}/classes/archetype-resources/scripts</outputDirectory>
+              <outputDirectory>${project.build.directory}/classes/archetype-resources/${archetype.tooling.dir}/scripts</outputDirectory>
               <resources>
                 <resource>
                   <directory>${project.parent.basedir}/src/main/resources/scripts</directory>

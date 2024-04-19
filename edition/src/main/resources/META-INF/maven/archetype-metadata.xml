@@ -16,8 +16,8 @@
     </requiredProperty>
   </requiredProperties>
   <fileSets>
-    <fileSet filtered="false" packaged="true">
-      <directory>scripts</directory>
+    <fileSet filtered="false" packaged="false">
+      <directory>${archetype.tooling.dir}/scripts</directory>
     </fileSet>
   </fileSets>
 </archetype-descriptor>

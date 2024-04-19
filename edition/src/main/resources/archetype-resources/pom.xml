@@ -7,10 +7,10 @@
 
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
-    <version>\${revision}\${changelist}</version>
+    <version>${revision}${changelist}</version>
 
     <name>Digital Edition</name>
-    <url>https://${git-instance}/${git-repo-path}</url>
+    <url>https://${git-instance}${git-repo-path}</url>
 
     <properties>
         <!-- project repository -->
@@ -18,7 +18,7 @@
         <distribution.url>${distribution-url}</distribution.url>
         <git.repo.path>${git-repo-path}</git.repo.path>
 
-        <tooling.dir>${tooling-dir}</tooling.dir>
+        <tooling.dir>${project.basedir}/${tooling-dir}</tooling.dir>
 
         <!-- Tool Versions -->
         <ph.schematron.version>5.6.4</ph.schematron.version>
@@ -27,6 +27,7 @@
         <oxygen.version>24.1.0.0</oxygen.version>
         <jing.version>20091111</jing.version>
         <schxslt.version>1.9.5</schxslt.version>
+        <xspec.version>2.2.4</xspec.version>
         <ant.version>1.10.14</ant.version>
         <ant-contrib.version>1.0b3</ant-contrib.version>
         <slf4j.version>2.0.6</slf4j.version>
@@ -59,12 +60,6 @@
             <groupId>com.thaiopensource</groupId>
             <artifactId>jing</artifactId>
             <version>${jing.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>name.dmaus.schxslt</groupId>
-            <artifactId>ant</artifactId>
-            <version>${schxslt.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/ant/ant -->
@@ -151,25 +146,49 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <stripVersion>true</stripVersion>
                             <outputDirectory>${project.build.directory}/lib</outputDirectory>
                             <!-- we need to prevent some outdated or replaced jars from being copied -->
                             <excludeArtifactIds>xercesImpl,saxon</excludeArtifactIds>
-                            <!-- the schXslt jar is not to be copied -->
-                            <excludeGroupIds>name.dmaus.schxslt</excludeGroupIds>
                         </configuration>
                     </execution>
                     <execution>
-                        <!-- unpack schXslt to target/schxslt -->
-                        <id>unpack-schXslt</id>
+                        <!-- get and unpack XSpec -->
+                        <id>unpack-xspec</id>
                         <phase>generate-resources</phase>
                         <goals>
-                            <goal>unpack-dependencies</goal>
+                            <goal>unpack</goal>
                         </goals>
                         <configuration>
-                            <includeArtifacts>name.dmaus.schxslt:ant</includeArtifacts>
-                            <includes>**/*.xsl</includes>
-                            <outputDirectory>${project.build.directory}/schxslt</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>io.xspec</groupId>
+                                    <artifactId>xspec</artifactId>
+                                    <version>${xspec.version}</version>
+                                    <classifier>enduser-files</classifier>
+                                    <type>zip</type>
+                                    <!-- "tar.gz" is also available -->
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- get and unpack schXslt -->
+                        <id>unpack-schxslt</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <!-- as this is a jar, we need to set an output directory,
+                                in order not to pollute target/dependency -->
+                            <outputDirectory>${project.build.directory}/dependency/schxslt</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>name.dmaus.schxslt</groupId>
+                                    <artifactId>ant</artifactId>
+                                    <version>${schxslt.version}</version>
+                                </artifactItem>
+                            </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
