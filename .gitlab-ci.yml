@@ -26,11 +26,27 @@ test:
 push-packages:
   stage: deploy
   script:
-    - ./mvnw -Drevision=$CI_COMMIT_TAG -Dchangelist="" -Darchetype.distribution.url=https://${git.instance}/api/v4/projects/\${env.CI_PROJECT_ID}/packages/maven verify
-    - target/bin/test.sh
+    - ./mvnw -Drevision=$CI_COMMIT_TAG -Dchangelist="" -Darchetype.distribution.url=https://${git.instance}/api/v4/projects/\${env.CI_PROJECT_ID}/packages/maven package
     - ./mvnw -Drevision=$CI_COMMIT_TAG -Dchangelist="" deploy -s ci_settings.xml
   artifacts:
     paths:
       - target
+      # - edition/target
+      # - processing/target
+  rules:
+    - !reference [ .release_rules, rules ]
+
+
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public
+    - ls -la
+    - cp target/archetype-catalog.xml public/
+  needs:
+    - push-packages
+  artifacts:
+    paths:
+      - public
   rules:
     - !reference [ .release_rules, rules ]
