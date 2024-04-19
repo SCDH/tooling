@@ -46,10 +46,9 @@
         <archetype.git.instance>zivgitlab.uni-muenster.de</archetype.git.instance>
         <!--
             The env.CI_PROJECT_ID variable must be escaped when defined!
-            Thus, in the gitlab pipeline it has to be re-set with an escaped
-            value!
+            Thus, in the gitlab pipeline it has to be escaped!
         -->
-        <archetype.distribution.url>https://${git.instance}/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven</archetype.distribution.url>
+        <archetype.distribution.url>https://${git.instance}/api/v4/projects/\${env.CI_PROJECT_ID}/packages/maven</archetype.distribution.url>
 
 
         <!-- properties for this project -->

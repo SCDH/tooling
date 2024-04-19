@@ -26,7 +26,7 @@ test:
 push-packages:
   stage: deploy
   script:
-    - ./mvnw -Drevision=$CI_COMMIT_TAG -Dchangelist="" -Darchetype.distribution.url=https://${git.instance}/api/v4/projects/\${env.CI_PROJECT_ID}/packages/maven package
+    - ./mvnw -Drevision=$CI_COMMIT_TAG -Dchangelist="" package
     - ./mvnw -Drevision=$CI_COMMIT_TAG -Dchangelist="" deploy -s ci_settings.xml
   artifacts:
     paths:
