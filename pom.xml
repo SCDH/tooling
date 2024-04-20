@@ -58,6 +58,7 @@
 
     <modules>
         <module>edition</module>
+        <module>edition-flat</module>
         <module>processing</module>
     </modules>
 
