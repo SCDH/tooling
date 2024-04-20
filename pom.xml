@@ -49,6 +49,7 @@
             Thus, in the gitlab pipeline it has to be escaped!
         -->
         <archetype.distribution.url>https://${git.instance}/api/v4/projects/\${env.CI_PROJECT_ID}/packages/maven</archetype.distribution.url>
+        <archetype.credits>\${env.GITLAB_USER_NAME}</archetype.credits>
 
 
         <!-- properties for this project -->

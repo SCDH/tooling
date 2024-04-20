@@ -4,6 +4,9 @@
   xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 https://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
   name="edition-tooling">
   <requiredProperties>
+    <requiredProperty key="credits">
+      <defaultValue>${archetype.credits}</defaultValue>
+    </requiredProperty>
     <requiredProperty key="git-instance">
       <defaultValue>${archetype.git.instance}</defaultValue>
     </requiredProperty>
@@ -21,5 +24,12 @@
     <fileSet filtered="false" packaged="false">
       <directory>.mvn</directory>
     </fileSet>
+    <fileSet filtered="false" packaged="false">
+      <directory>distribution</directory>
+    </fileSet>
+    <fileSet filtered="false" packaged="false">
+      <directory>utils</directory>
+    </fileSet>
+
   </fileSets>
 </archetype-descriptor>
