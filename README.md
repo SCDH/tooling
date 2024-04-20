@@ -21,16 +21,21 @@ using them.
 
 The following Tools and their dependencies are downloaded:
 
-- Saxon HE: an XSLT and XQuery processor
+- [Saxon HE](https://www.saxonica.com/welcome/welcome.xml): an XSLT
+  and XQuery processor
 - extensions to Saxon
-  - an implementation of TEI XPointer schemes
-  - ICU-XPath-Bindings for normalizing and transliterating Unicode
-- Jing: a Relax NG validator
-- schXslt: a Schematron validator
-- XSpec: a unit testing framework for XSLT and XQuery
-- Apache Ant and AntContrib: an incremental build tool with great
-  support for XSLT and other X-technologies
-- Apache Jena RIOT: an RDF converter
+  - an implementation of [TEI XPointer schemes](https://github.com/SCDH/tei-xpointer-schemes)
+  - [ICU-XPath-Bindings](https://github.com/SCDH/icu-xpath-bindings)
+    for normalizing and transliterating Unicode
+- [Jing](https://relaxng.org/jclark/jing.html): a Relax NG validator
+- [schXslt](https://github.com/schxslt/schxslt): a Schematron
+  validator
+- [XSpec](https://github.com/xspec/xspec): a unit testing framework
+  for XSLT and XQuery
+- [Apache Ant](https://ant.apache.org/) and AntContrib: an incremental
+  build tool with great support for XSLT and other X-technologies
+- [Apache Jena RIOT](https://jena.apache.org/documentation/io/): an
+  RDF converter
 
 The Tooling can easily be extended, so that you can download further
 tools or your own packetized XSLT libraries, etc.  It also helps with
