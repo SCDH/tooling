@@ -14,8 +14,10 @@
     <url>https://${git-instance}${git-repo-path}</url>
 
     <properties>
-        <!-- the main author or contributors who gain credits for this project -->
+        <!-- the main author or contributors who gain credits for this project; used in metadata of build artifacts -->
         <author>${credits}</author>
+        <!-- where to find the software license for this project; content is used in metadata of build artifacts -->
+        <license.file>LICENSE</license.file>
 
         <!-- project repository -->
         <git.instance>${git-instance}</git.instance>
@@ -390,13 +392,13 @@
                     <!-- let's have a license property -->
                     <execution>
                         <id>read-license</id>
-                        <phase>generate-sources</phase>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
                             <target>
-                                <loadfile property="license" srcFile="LICENSE"/>
+                                <loadfile property="license" srcFile="${license.file}"/>
                             </target>
                             <exportAntProperties>true</exportAntProperties>
                         </configuration>
