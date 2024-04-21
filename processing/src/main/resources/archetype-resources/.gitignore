@@ -1,0 +1,8 @@
+*~
+
+# build artifacts
+/target
+/saxon.xml
+/saxon.he.xml
+/saxon.pe.xml
+/saxon.ee.xml
