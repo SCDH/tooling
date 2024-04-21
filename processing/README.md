@@ -181,6 +181,40 @@ in `distribution/*/assembly.xml`. These descriptors come with
 reasonable defaults and collect XSLT and XQuery from any subfolder
 except the ones the belong to Tooling.
 
+### SEED Distribution
+
+The SEED Distribution requires a yaml configuration file. This file
+can either be supplied by the user in a file called `ARTEFACT_ID.yaml`
+in the base folder of the project, where `ARTEFACT_ID` must be the
+same as the project's `artifactId` in the pom file.
+
+Or the configuration file can be auto-generated. In this case, you
+have to add the paths to your XSLT stylesheets to a section inside the
+pom file, which is marked by comments under the
+`<id>generate-seed-config</id>` execution (search for this string).
+You have to add elements like the following, to register a stylesheets
+under `xsl/tei/docx/verses.xsl` for the configuration:
+
+```xml
+<include>xsl/tei/docx/verses.xsl</include>
+```
+
+To generate the configuration, run Maven using the `seed-config` build
+profile:
+
+```
+mvn -Pseed-config package
+```
+
+Note, that user-supplied config files override the generated config.
+
+If you do not provide or generate a SEED configuration, building your
+project works as well. Only the SEED distribution will not work.
+
+If you are interested in the details of generating the configuration:
+Everthing is contained in `distribution/seed/*.xsl` and in the
+`seed-config` build profile section in the pom file.
+
 
 ## Version Numbers
 
