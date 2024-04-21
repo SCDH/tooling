@@ -528,38 +528,6 @@
                 <plugins>
 
                     <plugin>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                        <executions>
-                            <execution>
-                                <id>sef-package-transformations-resource</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${sef-package.dir}</outputDirectory>
-                                    <resources>
-                                        <resource>
-                                            <directory>${project.basedir}/distribution/seed</directory>
-                                            <includes>
-                                                <include>package.json</include>
-                                            </includes>
-                                            <filtering>true</filtering>
-                                        </resource>
-                                        <resource>
-                                            <directory>${project.basedir}</directory>
-                                            <includes>
-                                                <include>LICENSE</include>
-                                            </includes>
-                                        </resource>
-                                    </resources>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>xml-maven-plugin</artifactId>
                         <version>1.0.2</version>
@@ -644,6 +612,38 @@
                                 <version>10.2</version>
                             </dependency>
                         </dependencies>
+                    </plugin>
+
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>sef-package-transformations-resource</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${sef-package.dir}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.basedir}/distribution/seed</directory>
+                                            <includes>
+                                                <include>package.json</include>
+                                            </includes>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                        <resource>
+                                            <directory>${project.basedir}</directory>
+                                            <includes>
+                                                <include>${license.file}</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
 
                     <plugin>
