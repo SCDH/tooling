@@ -118,25 +118,19 @@ First, choose one of the archetypes provided:
   folder.
 
 
+To setup Tooling for a project, you once have to install the Maven
+archetypes (recipes) of this project. Note: This is a one-time
+process. After things are set up, the tooling can be used on other
+machines, without ever knowing about this project.
 
+1. Clone this repository and cd into it.
+1. Install the archetype: `./mvnw package install`
+1. Create a project with Tooling: `./mvnw archetype:generate
+   -DarchetypeCatalog=local -DoutputDirectory=/PATH/TO/PROJECT/PARENT`.
 
-Right now, you still have to clone this project and run `./mvnw
-package install` before you can set up tooling; this will install the
-archetypes, i.e., recipes for setting up a Tooling Maven
-project. Note: This is a one-time process. After things are set up,
-the tooling can be used on other machines, without ever knowing about
-this project.
-
-After you have installed the archetypes, just run the following
-command to use them:
-
-```
-mvn archetype:generate -DarchetypeCatalog=local
-```
-
-This will start an interactive Maven session which first lets you
-choose an archetype and then asks you for some parameters how to set
-up the project. The parameters are explained on the archetypes'
+The last command will start an interactive Maven session which first
+lets you choose an archetype and then asks you some properties used to
+set up the project. The parameters are explained on the archetypes'
 folders (see links above).
 
 ```
@@ -151,9 +145,10 @@ Choose a number or apply filter (format: [groupId:]artifactId, case sensitive co
 
 ### Maven wrapper
 
-On top of Tooling, you can provide Maven wrapper to further facilitate
-the usage of your project. Therefore change into the directory where
-the `pom.xml` file is and run the following command:
+On top of Tooling, you can provide [Maven
+Wrapper](https://maven.apache.org/wrapper/index.html) to further
+facilitate the usage of your project. Therefore change into the
+directory where the `pom.xml` file is and run the following command:
 
 ```
 mvn wrapper:wrapper
