@@ -575,7 +575,8 @@
                                         <transformationSet>
                                             <!-- generate configuration for SEED XML Transformer -->
                                             <dir>${project.basedir}</dir>
-                                            <!-- Include every transformation resource for the SEED XML Transformer! -->
+                                            <!-- Include every transformation resource for the SEED XML Transformer
+                                                in an <include>path</include> element! -->
                                             <includes>
                                                 <!--include>xsl/tei/docx/verses.xsl</include-->
                                             </includes>
@@ -606,6 +607,17 @@
                                                 </fileMapper>
                                             </fileMappers>
                                         </transformationSet>
+                                    </transformationSets>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>generate-static-api</id>
+                                <goals>
+                                    <goal>transform</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <transformationSets>
                                         <transformationSet>
                                             <!-- generate /transformations resource for the SEF package -->
                                             <dir>${project.basedir}</dir>
