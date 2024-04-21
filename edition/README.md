@@ -81,3 +81,45 @@ in it. You can simple copy the contents (including hidden files) to
 your edition. You can also try the `-Dbasedir=PATH` command line
 option.
 
+
+## Dependencies
+
+If your XSLT project depends on an other XSLT project, the best
+practise is to let Maven to the downloading and unpacking
+steps. Therefore add another `<execution>` element to the the
+`maven-dependency-plugin` declarations in the pom file. E.g.:
+
+```xml
+                    <execution>
+                        <!-- get and unpack HTR Transformations -->
+                        <id>unpack-htr-transformations</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <!-- unpacking dependencies to target/dependencies will enable merging of saxon configs -->
+                            <outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>de.uni-ms.scdh.tei</groupId>
+                                    <artifactId>htr-transformations</artifactId>
+                                    <version>0.1.3</version>
+                                    <classifier>package</classifier>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+```
+
+You may also want to tell Maven which Maven package registry
+(repository) to use. Add it to the `<repositories>` section (XPath:
+`/project/repositories`):
+
+```xml
+        <repository>
+            <id>zivgitlab-htr-transformations</id>
+            <url>https://zivgitlab.uni-muenster.de/api/v4/projects/6576/packages/maven</url>
+        </repository>
+```
