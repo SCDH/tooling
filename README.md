@@ -196,6 +196,25 @@ numbers, feel free to replace the properties in the pom file with a
 version number.
 
 
+## Wrapper Scripts
+
+The wrapper scripts provided by this Tooling can be called from any
+location in your filesystem, since they set up the classpath with
+absolut paths. So you can call the, e.g., the wrapper around Saxon for
+running XSLT from your project's base directory with
+`target/bin/xslt.sh -?` as well as from a nested subfolder with
+`../../target/bin/xslt.sh -?` or any location outside of your project.
+
+
 # Further Reading
 
+- Maven: https://maven.apache.org/
+
+- Maven Archetypes: https://maven.apache.org/archetype/index.html
+
 - https://stackoverflow.com/questions/7223031/how-to-embed-archetype-project-version-in-maven-archetype
+
+
+# License
+
+MIT
