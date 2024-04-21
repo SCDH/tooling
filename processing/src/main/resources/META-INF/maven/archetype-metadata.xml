@@ -30,6 +30,14 @@
     <fileSet filtered="false" packaged="false">
       <directory>utils</directory>
     </fileSet>
-
+    <fileSet filtered="false" packaged="false">
+      <!-- files in the base folder must be listed here -->
+      <directory/>
+      <includes>
+        <include>saxon-local.xml</include>
+        <include>LICENSE</include>
+        <include>.gitignore</include>
+      </includes>
+    </fileSet>
   </fileSets>
 </archetype-descriptor>
