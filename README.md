@@ -12,9 +12,10 @@ This Tooling project provides a *simple*, *portable*, *extensible* and
 an edition. Tooling is for both uses: on your personal machine and in
 a CI/CD pipeline.
 
-[Apache Maven](https://maven.apache.org/index.html) is used for
-getting all tools and setting up wrapper scripts and the classpath for
-using them.
+[Apache Maven](https://maven.apache.org/index.html), a software
+project management and comprehension tool, is used for getting all
+tools and setting up wrapper scripts for using them in a conveniant
+way.
 
 
 ## Tools
@@ -53,9 +54,12 @@ mvn package
 ```
 
 This requires a [Java installation](#requirements) and an installation
-of Apache Maven. Even better: Maven is not required if there are a
-`mvnw` (Linux/Mac), `mvnw.cmd` (Windows) files and a
-`.mvn/wrapper/maven-wrapper.jar` file present. In this case, you can
+of Apache Maven.
+
+Even better: The Maven installation is not required if there are
+`mvnw` (Linux/Mac) and `mvnw.cmd` (Windows) files present in the
+project and if there is a tiny Maven-Wrapper jar-file in
+`.mvn/wrapper/maven-wrapper.jar` in the project. In this case, you can
 just run the wrapper script to get tooling:
 
 ```
