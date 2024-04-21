@@ -201,6 +201,12 @@ running XSLT from your project's base directory with
 `../../target/bin/xslt.sh -?` or any location outside of your project.
 
 
+## CI/CD Pipelines
+
+Resources for defining CI/CD pipelines can be found in
+[`src/main/resource`](src/main/resource).
+
+
 # Further Reading
 
 - Maven: https://maven.apache.org/
