@@ -11,10 +11,10 @@ Choose archetype:
 3: local -> de.uni-ms.scdh.tei:edition-tooling-flat (Tooling for TEI Editions, Maven also in tooling folder)
 Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): : 1
 [INFO] Using property: tooling-dir = tooling                                 <<<==== fixed value
-[INFO] Using property: git-instance = zivgitlab.uni-muenster.de              <<<==== The git instance, domain part of the URL
-Define value for property 'git-repo-path': /SCDH/herbert-saeculum/edition    <<<==== The git instance, domain part of the URL
+[INFO] Using property: git-instance = zivgitlab.uni-muenster.de              <<<==== The git repo, domain part of the URL
+Define value for property 'git-repo-path': /SCDH/herbert-saeculum/edition    <<<==== The git repo, path part of the URL, i.e. /group/subgroup/repo 
 Define value for property 'distribution-url' https://${git.instance}/api/v4/projects/\${env.CI_PROJECT_ID}/packages/maven: :    <<<==== The git instance, domain part of the URL
-Define value for property 'groupId': de.uni-ms.herbert                       <<<==== The git instance, domain part of the URL
+Define value for property 'groupId': de.uni-ms.herbert                       <<<==== The project's group Id. Type something reasonable here!
 Define value for property 'artifactId': saeculum-edition                     <<<==== The identifier of the project. Type something reasonable here!
 Define value for property 'version' 1.0-SNAPSHOT: :                          <<<==== this version information is not used. See README
 Define value for property 'package' de.uni-ms.herbert: :                     <<<==== not used
