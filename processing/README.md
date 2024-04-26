@@ -132,7 +132,7 @@ steps. Therefore add another `<execution>` element to the the
                     <execution>
                         <!-- get and unpack SEED TEI Transformations -->
                         <id>unpack-seed-tei-transformations</id>
-                        <phase>generate-resources</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -151,6 +151,9 @@ steps. Therefore add another `<execution>` element to the the
                         </configuration>
                     </execution>
 ```
+
+Please note, that this unpacking must be done in Maven
+`generate-sources` phase.
 
 You may also want to tell Maven which Maven package registry
 (repository) to use. Add it to the `<repositories>` section (XPath:

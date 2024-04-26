@@ -93,7 +93,7 @@ steps. Therefore add another `<execution>` element to the the
                     <execution>
                         <!-- get and unpack HTR Transformations -->
                         <id>unpack-htr-transformations</id>
-                        <phase>generate-resources</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
