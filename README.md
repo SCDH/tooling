@@ -204,7 +204,7 @@ running XSLT from your project's base directory with
 ## CI/CD Pipelines
 
 Resources for defining CI/CD pipelines can be found in
-[`src/main/resource`](src/main/resource).
+[`src/main/resources`](src/main/resources).
 
 
 # Further Reading
