@@ -77,6 +77,30 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>2.4</version>
+        <executions>
+          <!-- make the processing zip package -->
+          <execution>
+            <id>processing-distribution</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <finalName>${project.artifactId}-${project.version}</finalName>
+              <archiveBaseDirectory>${project.baseDir}</archiveBaseDirectory>
+              <descriptors>
+                <descriptor>assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+
     </plugins>
 
     <resources>
@@ -97,4 +121,18 @@
     </resources>
 
   </build>
+
+  <profiles>
+    <profile>
+      <id>package</id>
+      <properties>
+        <groupId>my.group</groupId>
+        <artifactId>MyProject</artifactId>
+        <credits>ME</credits>
+        <git-instance>git.org</git-instance>
+        <git-repo-path>/ME/PROJECT</git-repo-path>
+        <distribution-url/>
+      </properties>
+    </profile>
+  </profiles>
 </project>
