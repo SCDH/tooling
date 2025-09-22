@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+
+
+    <!-- where to find relevant jar files. Defaults to libraries provided by maven/tooling -->
+    <property name="jars" value="${basedir}/target/lib"/>
+
+    <path id="java.class.path">
+        <fileset dir="${jars}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <echo>classpath: ${java.class.path}</echo>
+    <echo>ext.dirs: ${java.ext.dirs}</echo>
+
+
+
+</project>
